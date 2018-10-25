@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Drum Kit 101</title>
+	<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+
+<div id="keys"></div>
+<div id="audio">
+	<audio data-key="65" src="sounds/clap.wav"></audio>
+	<audio data-key="83" src="sounds/hihat.wav"></audio>
+	<audio data-key="68" src="sounds/kick.wav"></audio>
+	<audio data-key="70" src="sounds/openhat.wav"></audio>
+	<audio data-key="71" src="sounds/boom.wav"></audio>
+	<audio data-key="72" src="sounds/ride.wav"></audio>
+	<audio data-key="74" src="sounds/snare.wav"></audio>
+	<audio data-key="75" src="sounds/tom.wav"></audio>
+	<audio data-key="76" src="sounds/tink.wav"></audio>
+</div>
+
+<script type="text/javascript">
+var keysContainer = document.getElementById( "keys" );
+var audioContainer = document.getElementById( "audio" );
+
+var keys = [
+	[ "65", "A", "clap" ],
+	[ "83", "S", "hihat" ],
+	[ "68", "D", "kick" ],
+	[ "70", "F", "openhat" ],
+	[ "71", "G", "boom" ],
+	[ "72", "H", "ride" ],
+	[ "74", "J", "snare" ],
+	[ "75", "K", "tom" ],
+	[ "76", "L", "tink" ],
+];
+
+for ( var i = 0; i < keys.length; i++ ){
+	keysContainer.innerHTML += 
+	"<div data-key='" + keys[i][0] + "' class='key'>" + 
+		"<kbd>" + keys[i][1] + "</kbd>" +
+		"<span class='sound'>" + keys[i][2] + "</span>" +
+	"</div>";
+}
+
+window.addEventListener( "keydown", function(e){
+	const audio = document.querySelector( `audio[ data-key="${ e.keyCode }" ]` );
+	const key = document.querySelector( `.key[ data-key="${ e.keyCode }" ]` );
+
+	if( !audio ) return; // stop the function if does not exist
+	audio.currentTime = 0; // rewind to the start
+	audio.play();
+	key.classList.add( 'playing' );
+
+})
+
+function removeTransition(e){
+	if ( e.propertyName !== 'transform' ) return;
+	this.classList.remove( 'playing' );
+
+}
+
+const letters = document.querySelectorAll( '.key' );
+letters.forEach( letter => letter.addEventListener( "transitionend", removeTransition));
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

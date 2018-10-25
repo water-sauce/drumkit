@@ -1,0 +1,35 @@
+body, html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.key {
+	border-radius: 4px;
+	text-align: center;
+	display: inline-block;
+	margin: 0.75rem;
+	padding: 0.75rem;
+	border: 1px solid #b3b3b3;
+	transition: all 0.08s;
+}
+
+.playing {
+	transform: scale(1.15);
+	border-color: #f2cb18;
+	box-shadow: 0 0 5px #f2cb18;
+}
+
+kbd {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.sound {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+}
